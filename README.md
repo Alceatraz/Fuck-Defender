@@ -9,7 +9,7 @@
 - Remove offline mode
 - Remove backup mode
 - Remove skip delete mode
-- Remove everything buy only allow remove package named in args
+- Remove everything but only allow remove package named in args
 - Remove Herobrine
 
 ## Usage
