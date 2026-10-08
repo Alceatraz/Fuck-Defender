@@ -24,5 +24,4 @@ jobs:
       with:
         name: FuckDefender
         path: |
-          Release/FuckDefender.exe
-          x64/Release/FuckDefender.exe
+          FuckDefender/bin/Release/FuckDefender.exe
