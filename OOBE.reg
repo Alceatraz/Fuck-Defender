@@ -2,6 +2,18 @@ Windows Registry Editor Version 5.00
 
 ; ======================================================================================================================
 
+; Windows Update
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU]
+"AUOptions"=dword:00000002
+"NoAutoRebootWithLoggedOnUsers"=dword:00000001
+"AlwaysAutoRebootAtScheduledTime"=dword:00000000
+
+; Microsoft Malicious Software Removal Tool
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MRT]
+"DontOfferThroughWUAU"=dword:00000001
+
+; ======================================================================================================================
+
 ; script/Remove_Defender/Disable Mitigation.reg
 
 ; DONT APPLY THIS FILE
