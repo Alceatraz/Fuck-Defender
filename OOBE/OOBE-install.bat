@@ -58,8 +58,6 @@ reg add "HKCU\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\Current
 reg add "HKCU\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\PhishingFilter" /v "PreventOverride" /t REG_DWORD /d 0 /f
 reg add "HKCU\Software\Microsoft\Edge" /v "SmartScreenEnabled" /t REG_DWORD /d 0 /f
 
-:: HKLM\SYSTEM\CurrentControlSet\Control\CI\Policy
-
 reg add "HKCU\Software\Microsoft\Edge\SmartScreenEnabled" /ve /t REG_DWORD /d 0 /f
 
 :: Disable SmartScreen in File Explorer and Windows Shell
@@ -328,6 +326,8 @@ reg delete "HKLM\SYSTEM\CurrentControlSet\Services\WdNisSvc" /f
 reg delete "HKLM\SYSTEM\CurrentControlSet\Services\WdFilter" /f
 reg delete "HKLM\SYSTEM\CurrentControlSet\Services\WdBoot" /f
 
+; DONT disable System Guard
+
 reg delete "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SgrmAgent" /f
 reg delete "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SgrmBroker" /f
 
@@ -341,9 +341,11 @@ reg delete "HKLM\SYSTEM\CurrentControlSet\Services\webthreatdefsvc" /f
 reg delete "HKLM\SYSTEM\CurrentControlSet\Services\webthreatdefusersvc" /f
 reg delete "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Svchost\WebThreatDefense" /f
 
-reg delete "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PlutonHsp2" /f
-reg delete "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PlutonHeci" /f
-reg delete "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Hsp" /f
+; DONT disable Pluton TEE
+
+:: reg delete "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PlutonHsp2" /f
+:: reg delete "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PlutonHeci" /f
+:: reg delete "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Hsp" /f
 
 :: ======================================================================================================================
 :: script/Remove_Defender/RemoveShellAssociation.reg

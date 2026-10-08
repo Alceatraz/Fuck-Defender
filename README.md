@@ -28,14 +28,14 @@ There are two parts of this project
 
 ## OOBE
 
-| name                       | usage                                                                    |
-|----------------------------|--------------------------------------------------------------------------|
-| `OOBE.reg`                 | Apply for online system, Need disable tamper protect manually.           |
-| `OOBE-tamper.reg`          | Apply with `WinNTSetup` when fresh install, Auto disable tamper protect. |
-| `OOBE-install.bat`         | Batch former of `OOBE.reg`, Execute gpudate at end.                      |
-| `OOBE-offline.bat`         | Apply in offline mode with WePE                                          |
-| `disable-auto-restart.bat` | Disable WUAU and MRT, Batch former, Execute gpudate at end.              |
-| `disable-auto-restart.reg` | Disable WUAU and MRT, Registy former, Need manually reboot or gpupdate.  |
+| name                       | usage                                                                        |
+|----------------------------|------------------------------------------------------------------------------|
+| `OOBE.reg`                 | Apply for online system, Need disable tamper protect manually.               |
+| `OOBE-tamper.reg`          | Apply with `WinNTSetup` when fresh install, Auto disable tamper protect.     |
+| `OOBE-install.bat`         | Batch former of `OOBE.reg`, Execute gpudate at end.                          |
+| `OOBE-offline.bat`         | Apply in offline mode with WePE, WARN: You must modifty it before execute!!! |
+| `disable-auto-restart.bat` | Disable WUAU and MRT, Batch former, Execute gpudate at end.                  |
+| `disable-auto-restart.reg` | Disable WUAU and MRT, Registy former, Need manually reboot or gpupdate.      |
 
 ## FuckDefender
 
@@ -55,6 +55,8 @@ But for Windows 11 will deny access. You have to boot into PE modify hive offlin
 
 1. Use `WinNTSetup` tweak feature apply `OOBE-tamper.reg` before SysPrep, Before any permission interference (This is stable).
 2. Use `OOBE-offline.bat` to modify in offline mode. Because HKCR HKCU is virtual view, The offline mode may cause wired result.
+    1. You need find out which ControlSet is working.
+    2. You need mount all user one by one and modify it.
 
 # Changelog
 

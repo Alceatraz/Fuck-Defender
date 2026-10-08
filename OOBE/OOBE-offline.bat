@@ -63,8 +63,6 @@ reg add "HKLM\OFFLINE_CURRENT_USER\Software\Classes\Local Settings\Software\Micr
 reg add "HKLM\OFFLINE_CURRENT_USER\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\PhishingFilter" /v "PreventOverride" /t REG_DWORD /d 0 /f
 reg add "HKLM\OFFLINE_CURRENT_USER\Software\Microsoft\Edge" /v "SmartScreenEnabled" /t REG_DWORD /d 0 /f
 
-:: HKLM\OFFLINE_SYSTEM\ControlSet001\Control\CI\Policy
-
 reg add "HKLM\OFFLINE_CURRENT_USER\Software\Microsoft\Edge\SmartScreenEnabled" /ve /t REG_DWORD /d 0 /f
 
 :: Disable SmartScreen in File Explorer and Windows Shell
@@ -306,8 +304,10 @@ reg delete "HKLM\OFFLINE_SYSTEM\ControlSet001\Services\WdNisSvc" /f
 reg delete "HKLM\OFFLINE_SYSTEM\ControlSet001\Services\WdFilter" /f
 reg delete "HKLM\OFFLINE_SYSTEM\ControlSet001\Services\WdBoot" /f
 
-reg delete "HKLM\OFFLINE_SYSTEM\ControlSet001\Services\SgrmAgent" /f
-reg delete "HKLM\OFFLINE_SYSTEM\ControlSet001\Services\SgrmBroker" /f
+; DONT disable System Guard
+
+:: reg delete "HKLM\OFFLINE_SYSTEM\ControlSet001\Services\SgrmAgent" /f
+:: reg delete "HKLM\OFFLINE_SYSTEM\ControlSet001\Services\SgrmBroker" /f
 
 reg delete "HKLM\OFFLINE_SYSTEM\ControlSet001\Services\WinDefend" /f
 reg add "HKLM\OFFLINE_SOFTWARE\Policies\Microsoft\Windows Defender Security Center\App and Browser protection" /v "DisallowExploitProtectionOverride" /t REG_DWORD /d 1 /f
@@ -319,9 +319,11 @@ reg delete "HKLM\OFFLINE_SYSTEM\ControlSet001\Services\webthreatdefsvc" /f
 reg delete "HKLM\OFFLINE_SYSTEM\ControlSet001\Services\webthreatdefusersvc" /f
 reg delete "HKLM\OFFLINE_SOFTWARE\Microsoft\Windows NT\CurrentVersion\Svchost\WebThreatDefense" /f
 
-reg delete "HKLM\OFFLINE_SYSTEM\ControlSet001\Services\PlutonHsp2" /f
-reg delete "HKLM\OFFLINE_SYSTEM\ControlSet001\Services\PlutonHeci" /f
-reg delete "HKLM\OFFLINE_SYSTEM\ControlSet001\Services\Hsp" /f
+; DONT disable Pluton TEE
+
+:: reg delete "HKLM\OFFLINE_SYSTEM\ControlSet001\Services\PlutonHsp2" /f
+:: reg delete "HKLM\OFFLINE_SYSTEM\ControlSet001\Services\PlutonHeci" /f
+:: reg delete "HKLM\OFFLINE_SYSTEM\ControlSet001\Services\Hsp" /f
 
 :: ======================================================================================================================
 :: script/Remove_Defender/RemoveShellAssociation.reg
