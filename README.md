@@ -1,52 +1,58 @@
-# FuckDefender
+# Clean OOBE aka. Fuck Defender
 
-**This project is basically steal from [This](https://github.com/shiitake/win6x_registry_tweak)**
+**Make the fucking Windows not that fucking stupid**
 
-## Description
+> DO NOT TOUCHING MY FUCKING FILES  
+> DO NOT AUTO RESTART MY FUCKING COMPUTER  
+> AND DONT FUCKING ASK ME THE FUCKING FILE IS SUSPECT AS YOUR FUCKING MOM
 
-- Use `dism` instead `pkgmgr`
-- Remove `Win32Security`, Working fine in Win10 without it
-- Remove offline mode
-- Remove backup mode
-- Remove skip delete mode
-- Remove everything but only allow remove package named in args
-- Remove Herobrine
+---
 
-## Usage
+# Very Important disclaimer
 
-### Direct run
+**This project is directly steal from [ionuttbara/windows-defender-remover](https://github.com/ionuttbara/windows-defender-remover)**
 
-Just double click (**In fact you need `Right Click` And `Run with Administrator`**)  
-It's will uninstall `Windows-Defender` at default args (Or no args).
+**This project is basically steal from [shiitake/win6x_registry_tweak](https://github.com/shiitake/win6x_registry_tweak)**
 
-### Search With Args
+---
+
+# Usage
+
+There to parts of this project:
+
+1. `OOBE.reg`: Fork from `ionuttbara/windows-defender-remover` as my own baseline.
+2. `FuckDefender.exe`: Use `DISM` remove defender suit packages. Works with win10 only.
+
+## Typical
+
+1. Run with Administrator, Press Enter
+2. Apply OOBE.reg
+3. reboot
+
+## More usage
+
+### List packages
+
+list all package in your system  
+```FuckDefender.exe /l```
+
+### Search and Remove
 
 Args are name search with contains  
 ```FuckDefender.exe [name-1] [name-2] [name-3] ...```
 
-### List All Package
+# Changelog
 
-With only one argument `/l` to list all package in your system  
-```FuckDefender.exe /l```
+## 1.0.0
 
---- 
+- Use `dism` instead `pkgmgr`
+- Remove `Win32Security`
+- Remove offline mode
+- Remove dry run mode
+- Remove backup mode
+- Remove Herobrine
 
-# Make Windows not that fucking stupid
-
-> DO NOT AUTO RESTART MY FUCKING COMPUTER
-
-```batch
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v AUOptions /t REG_DWORD /d 2 /f
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v NoAutoRebootWithLoggedOnUsers /t REG_DWORD /d 1 /f
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v AlwaysAutoRebootAtScheduledTime /t REG_DWORD /d 0 /f
-reg add "HKLM\SOFTWARE\Policies\Microsoft\MRT" /v DontOfferThroughWUAU /t REG_DWORD /d 1 /f
-
-gpupdate /force
-```
-
----
-
-## How it work
+# How it work
 
 If you directly use
 
