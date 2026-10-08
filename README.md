@@ -14,34 +14,55 @@
 
 **This project is basically steal from [shiitake/win6x_registry_tweak](https://github.com/shiitake/win6x_registry_tweak)**
 
----
+
+--- 
 
 # Usage
 
-There to parts of this project:
+There are two parts of this project
 
 1. `OOBE.reg`: Fork from `ionuttbara/windows-defender-remover` as my own baseline.
 2. `FuckDefender.exe`: Use `DISM` remove defender suit packages. Works with win10 only.
 
-## Typical
+**You don't have to use both tool.**
 
-1. Run with Administrator, Press Enter
-2. Apply OOBE.reg
-3. reboot
+## OOBE
 
-## More usage
+| name                       | usage                                                                    |
+|----------------------------|--------------------------------------------------------------------------|
+| `OOBE.reg`                 | Apply for online system, Need disable tamper protect manually.           |
+| `OOBE-tamper.reg`          | Apply with `WinNTSetup` when fresh install, Auto disable tamper protect. |
+| `OOBE-install.bat`         | Batch former of `OOBE.reg`, Execute gpudate at end.                      |
+| `OOBE-offline.bat`         | Apply in offline mode with WePE                                          |
+| `disable-auto-restart.bat` | Disable WUAU and MRT, Batch former, Execute gpudate at end.              |
+| `disable-auto-restart.reg` | Disable WUAU and MRT, Registy former, Need manually reboot or gpupdate.  |
 
-### List packages
+## FuckDefender
 
-list all package in your system  
-```FuckDefender.exe /l```
+| name                                       | usage                                   |
+|--------------------------------------------|-----------------------------------------|
+| `fuckdefender.exe`                         | Use `Windows-Defender` as name1         |
+| `fuckdefender.exe /l`                      | List all installed package              |
+| `fuckdefender.exe [name1] [name2] [nameN]` | Search names (contains) and remove them |
 
-### Search and Remove
+## Extra Step for Windows 11
 
-Args are name search with contains  
-```FuckDefender.exe [name-1] [name-2] [name-3] ...```
+> Because windows 11 is pure stupid fucking shit. So it's very very very very very very very very very very very unstable.
+
+As example as Windows 10. When you turn off tamper protect, Apply `OOBE.reg` or execute `FuckDefender.exe` will success, Natural as breath.
+
+But for Windows 11 will deny access. You have to boot into PE modify hive offline by `reg load`. So
+
+1. Use `WinNTSetup` tweak feature apply `OOBE-tamper.reg` before SysPrep, Before any permission interference (This is stable).
+2. Use `OOBE-offline.bat` to modify in offline mode. Because HKCR HKCU is virtual view, The offline mode may cause wired result.
 
 # Changelog
+
+## 2.0.0
+
+- Fork `ionuttbara/windows-defender-remover` as `OOBE.reg`
+- Add `OOBE-offline.reg` variant for `WinNTSetup` import
+- Add `OOBE-offline.bat` variant for WePE offline processing
 
 ## 1.0.0
 
@@ -51,20 +72,3 @@ Args are name search with contains
 - Remove dry run mode
 - Remove backup mode
 - Remove Herobrine
-
-# How it work
-
-If you directly use
-
-```
-dism /online /remove-package /package-name:Oh-MaMaMiYa
-```
-
-You will got an error code 5, Access Denied. But depends what I learned (Steal in fact) Remove the sub folder (Called RegistryKey in Registry)
-:
-
-```
-HKLM\Microsoft\Windows\CurrentVersion\Component Based Servicing\Packages\Oh-MaMaMiYa\Owner
-```
-
-Then You can remove it by `dism` or `pkgmgr`
